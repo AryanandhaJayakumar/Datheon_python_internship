@@ -1,0 +1,15 @@
+services:
+  outbox:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      RATE_LIMIT: "5"          # sends allowed per window, per client
+      RATE_WINDOW: "60"        # window length in seconds
+      MAX_ATTEMPTS: "3"
+      # SMTP_HOST: smtp.example.com   # set these to send real email
+      # SMTP_PORT: "587"
+      # SMTP_USER: you@example.com
+      # SMTP_PASSWORD: secret
+      # SMTP_FROM: outbox@example.com
+    restart: unless-stopped
